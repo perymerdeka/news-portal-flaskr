@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   web-redis-prod:
-    container_name: redis-liveonsat
+    container_name: redis-web
     image: redis:7.0.4-bullseye
     env_file:
       - .env
@@ -25,8 +25,8 @@ services:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
       - CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND}
     depends_on:
-      - liveonsat-api
-      - liveonsat-redis
+      - web-api
+      - web-redis
     networks:
       - web-api-network
   db-api-prod:
@@ -67,7 +67,7 @@ services:
       - ${APP_PORT}:${APP_PORT}
     depends_on:
       - db-api
-      - liveonsat-redis
+      - web-redis
     networks:
       - web-api-network
   nginx:

@@ -50,7 +50,7 @@ services:
     networks:
       - web-api-network
   web-api:
-    container_name: "liveonsat-api-container"
+    container_name: "web-api-container"
     restart: always
     build:
       context: .
